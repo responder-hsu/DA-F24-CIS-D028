@@ -3,7 +3,7 @@
 ![CCD](./images/CCD.jpeg)
 
 
-# Session
+# Section
 
 ```
                           // The big 3
@@ -13,13 +13,24 @@ State (enum);             // State of Session
  
 
                           // The connections to other classes (from the CCD)
-Seats (Collection);       // A session has a list of seats connecting to Students (1:n)
+Seats (Collection);       // A section has a list of seats connecting to Students (1:n)
 
 
                           // Other stuff that may be necessary – this is where teams should brainstorm
+Name (String)                      // Name (ex: Computer Info Systems)
+Description (String);              // Description of Department
+Schedule (Object);                 // When the department office is open
 ```
 
-## Department attribute list for reference
+## Possible Candidates
+```
+Courses (Collection);     // A section offers a selection of courses (1:n)
+Rooms (Collection);       // A section has a list of rooms it owns (1:n)
+
+
+```
+
+# Department attribute list for reference
 
 ```
                                    // The big 3 – make sure you include them
