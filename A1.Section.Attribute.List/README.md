@@ -1,6 +1,6 @@
 # Conceptual Class Diagram (CCD)
 
-![CCD](./images/CCD.jpg)
+![CCD](./images/CCD.jpeg)
 
 
 # Session
