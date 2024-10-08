@@ -1,3 +1,8 @@
+# Conceptual Class Diagram (CCD)
+
+![CCD](./images/CCD.jpg)
+
+
 # Session
 
 ```
