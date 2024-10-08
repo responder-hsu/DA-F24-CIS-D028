@@ -7,28 +7,29 @@
 
 ```
                           // The big 3
-ID (String);              // Unique ID of session (ex: "SESSxxx" or just use UUID)
-Type (enum);              // Type of Session
-State (enum);             // State of Session
+ID (String);              // Unique ID of Section (ex: "SECTION-xxx" or just use UUID)
+Type (enum);              // Type of Section ("physical"/"virtual")
+State (enum);             // State of Section ("open"/"waitlist"/"full")
  
 
                           // The connections to other classes (from the CCD)
-Seats (Collection);       // A section has a list of seats connecting to Students (1:n)
+Seats (Collection);       // A Section has a list of seats connecting to Students (1:n)
+Teacher (Teacher Ptr);    // A Section has a teacher (1:1)
+Course (Course Ptr);      // A Section has a course (1:1)
+Room (Room Ptr);          // A Section has a room (1:1)
 
 
                           // Other stuff that may be necessary – this is where teams should brainstorm
-Name (String)                      // Name (ex: Computer Info Systems)
-Description (String);              // Description of Department
-Schedule (Object);                 // When the department office is open
+CRN (Integer);            // Course Registration Number (ex: 28736)
+Name (String);            // Name (ex: "Computer Info Systems - S01")
+Description (String);     // Description of Section
+Campus (String);          // Campus of Section (ex: "FH", "FW", "FO", "DA", "DW", "DO")
+Period (String);          // Period of Section (ex: "09/23/2024 - 12/09/2024")
+Credit (Float);           // Credit of Section (ex: 5.0, 2.5)
+Schedule (Object);        // When the Section is open
+Material (String);        // Material used in Section (ex: textbooks, resources)
 ```
 
-## Possible Candidates
-```
-Courses (Collection);     // A section offers a selection of courses (1:n)
-Rooms (Collection);       // A section has a list of rooms it owns (1:n)
-
-
-```
 
 # Department attribute list for reference
 
