@@ -6,28 +6,31 @@
 # Section
 
 ```
-                          // The big 3
-ID (String);              // Unique ID of Section (ex: "SECTION-xxx" or just use UUID)
-Type (enum);              // Type of Section ("physical"/"virtual")
-State (enum);             // State of Section ("open"/"waitlist"/"full")
+                             // The big 3
+ID (String);                 // Unique ID of Section (ex: "SECTION-xxx" or just use UUID)
+Type (enum);                 // Type of Section ("physical"/"virtual")
+State (enum);                // State of Section ("open"/"waitlist"/"full")
  
 
-                          // The connections to other classes (from the CCD)
-Seats (Collection);       // A Section has a list of Seats connecting to Students (1:n)
-Teacher (Teacher Ptr);    // A Section has a Teacher (1:1)
-Course (Course Ptr);      // A Section has a Course (1:1)
-Room (Room Ptr);          // A Section has a Room (1:1)
+                             // The connections to other classes (from the CCD)
+Seats (Collection);          // A Section has a list of Seats connecting to Students (1:n)
+Teacher (Teacher Ptr);       // A Section has a Teacher (1:1)
+Course (Course Ptr);         // A Section has a Course (1:1)
+Room (Room Ptr);             // A Section has a Room (1:1)
 
 
-                          // Other stuff that may be necessary – this is where teams should brainstorm
-CRN (Integer);            // Course Registration Number (ex: 28736)
-Name (String);            // Name (ex: "Computer Info Systems - S01")
-Description (String);     // Description of Section
-Campus (String);          // Campus of Section (ex: "FH", "FW", "FO", "DA", "DW", "DO")
-Period (String);          // Period of Section (ex: "09/23/2024 - 12/09/2024")
-Credit (Float);           // Credit of Section (ex: 5.0, 2.5)
-Schedule (Object);        // When the Section is open
-Material (String);        // Material used in Section (ex: textbooks, resources)
+                             // Other stuff that may be necessary – this is where teams should brainstorm
+CRN (Integer);               // Course Registration Number (ex: 28736)
+Name (String);               // Name (ex: "Computer Info Systems - S01")
+Description (String);        // Description of Section
+Campus (String);             // Campus of Section (ex: "FH", "FW", "FO", "DA", "DW", "DO")
+Period (String);             // Period of Section (ex: "09/23/2024 - 12/09/2024")
+Credit (Float);              // Credit of Section (ex: 5.0, 2.5)
+Schedule (Object);           // When the Section is open
+Material (String);           // Material used in Section (ex: textbooks, resources)
+MainSection (Section Ptr);   // A child Section has a main Section, point to NULL for MainSection itself
+ChildSections (Collection);  // A Section may have multiple child Sections
+Subtitle (String);           // A subtitle for child Section (ex: "LAB", "CLAS")
 ```
 
 
