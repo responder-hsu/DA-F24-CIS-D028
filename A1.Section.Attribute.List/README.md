@@ -13,10 +13,10 @@ State (enum);             // State of Section ("open"/"waitlist"/"full")
  
 
                           // The connections to other classes (from the CCD)
-Seats (Collection);       // A Section has a list of seats connecting to Students (1:n)
-Teacher (Teacher Ptr);    // A Section has a teacher (1:1)
-Course (Course Ptr);      // A Section has a course (1:1)
-Room (Room Ptr);          // A Section has a room (1:1)
+Seats (Collection);       // A Section has a list of Seats connecting to Students (1:n)
+Teacher (Teacher Ptr);    // A Section has a Teacher (1:1)
+Course (Course Ptr);      // A Section has a Course (1:1)
+Room (Room Ptr);          // A Section has a Room (1:1)
 
 
                           // Other stuff that may be necessary – this is where teams should brainstorm
