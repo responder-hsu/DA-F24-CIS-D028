@@ -78,21 +78,23 @@ Type (enum);                 // Type of Plane (e.g., "Commercial", "Cargo", "Pri
 State (enum);                // Current status of Plane (e.g., "Operational," "Maintenance," "Grounded," "Retired", "Missing")
 
                              // Connections to other classes (from the CCD)
-SeatMap (Object);			 // Layout showing the arrangement of seats.
+SeatMap (Object);            // Layout showing the arrangement of seats.
+Model (PlaneModel Ptr);      // Reference to PlaneModel.
+Flight (Plane Ptr);          // Reference to the associated Flight.
 
 
                              // Other stuff that may be necessary
-Model (String);			     // The specific model of the plane.
-Manufacturer (String);		 // Company that manufactured the plane.
-Capacity (Integer);			 // Maximum number of passengers.
-CrewCapacity (Integer);		 // Number of crew members the plane can accommodate.
-Range (Float);			     // Maximum flying range in nautical mile.
-FuelType (enum);			 // Type of fuel used (e.g., "Jet A1").
-Owner (String);			     // The company or individual owning the plane.
-Age (Integer);			     // Number of years since manufacture.
-LastMaintenanceDate (Date);	 // Date when last serviced.
+Manufacturer (String);       // Company that manufactured the plane.
+Capacity (Integer);          // Maximum number of passengers.
+CrewCapacity (Integer);      // Number of crew members the plane can accommodate.
+Range (Float);               // Maximum flying range in nautical mile.
+FuelType (enum);             // Type of fuel used (e.g., "Jet A1").
+Owner (String);              // The company or individual owning the plane.
+Age (Integer);               // Number of years since manufacture.
+LastMaintenanceDate (Date);  // Date when last serviced.
 RegistrationNumber (String); // Official registration identifier.
-BaseLocation (String);		 // Primary stationed airport.
+BaseLocation (String);       // Primary stationed airport.
+CurrentLocation (String);    // Current stationed airport.
 ```
 
 ## Flight Instance
@@ -104,27 +106,27 @@ Type (enum);                 // Type of Flight (e.g., "Scheduled," "Charter").
 State (enum);                // Current status of Flight (e.g., "Scheduled", "In Progress")
 
                              // The connections to other classes (from the CCD)
-Plane (Plane Ptr);			 // Reference to the associated Plane.
-Pilot (Pilot Ptr);			 // Reference to the Pilot assigned.
-CoPilot (Pilot Ptr);		 // Reference to the CoPilot assigned.
-Route (Route Ptr);			 // Reference to the associated Route.
-SeatChart (Collection);		 // Dynamic Seat statuses for this flight.
-SeatStatus (Collection);	 // Decoupled Seat availability and conditions.
-CrewList (Collection);		 // List of assigned crew members.
+Plane (Plane Ptr);           // Reference to the associated Plane.
+Pilot (Pilot Ptr);           // Reference to the Pilot assigned.
+CoPilot (Pilot Ptr);         // Reference to the CoPilot assigned.
+Route (Route Ptr);           // Reference to the associated Route.
+SeatChart (Collection);      // Dynamic Seat statuses for this flight.
+SeatStatus (Collection);     // Decoupled Seat availability and conditions.
+CrewList (Collection);       // List of assigned crew members.
 
 
                                       // Other stuff that may be necessary
-Status (enum);			              // Punctuality status (e.g., "On-Time", "Delayed", "Canceled", "Early", "Diverted", "Landed")
-FlightNumber (String);			      // The designated flight number.
-DepartureAirport (String);			  // Airport code for departure.
-ArrivalAirport (String);			  // Airport code for arrival.
+Status (enum);                        // Punctuality status (e.g., "On-Time", "Delayed", "Canceled", "Early", "Diverted", "Landed")
+FlightNumber (String);                // The designated flight number.
+DepartureAirport (String);            // Airport code for departure.
+ArrivalAirport (String);              // Airport code for arrival.
 ScheduledDepartureTime (DateTime);    // Planned departure time.
 ScheduledArrivalTime (DateTime);      // Planned arrival time.
-ActualDepartureTime (DateTime);		  // Actual departure time.
-ActualArrivalTime (DateTime);		  // Actual arrival time.
-MilesTillEmpty (Float);			      // Estimated remaining miles.
-Airline (String);			          // Operating airline.
-PassengerCount (Integer);			  // Number of passengers.
+ActualDepartureTime (DateTime);       // Actual departure time.
+ActualArrivalTime (DateTime);         // Actual arrival time.
+MilesTillEmpty (Float);               // Estimated remaining miles.
+Airline (String);                     // Operating airline.
+PassengerCount (Integer);             // Number of passengers.
 DepartureWeatherConditions (String);  // Weather at departure.
-ArrivalWeatherConditions (String);	  // Weather at arrival.
+ArrivalWeatherConditions (String);    // Weather at arrival.
 ```
