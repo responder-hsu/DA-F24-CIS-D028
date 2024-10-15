@@ -87,8 +87,9 @@ Flight (Plane Ptr);          // Reference to the associated Flight.
 Manufacturer (String);       // Company that manufactured the plane.
 Capacity (Integer);          // Maximum number of passengers.
 CrewCapacity (Integer);      // Number of crew members the plane can accommodate.
+MaxLuggageWeight (Float);    // Maximum luggage weight the plane can safely carry, in kilograms or pounds.
 Range (Float);               // Maximum flying range in nautical mile.
-FuelType (enum);             // Type of fuel used (e.g., "Jet A1").
+FuelType (enum);             // Type of fuel used (e.g., "Jet A1", "Jet A", "JP-8", "Biofuel", "Hydrogen", "Electric").
 Owner (String);              // The company or individual owning the plane.
 Age (Integer);               // Number of years since manufacture.
 LastMaintenanceDate (Date);  // Date when last serviced.
@@ -127,6 +128,7 @@ ActualArrivalTime (DateTime);         // Actual arrival time.
 MilesTillEmpty (Float);               // Estimated remaining miles.
 Airline (String);                     // Operating airline.
 PassengerCount (Integer);             // Number of passengers.
+LuggageWeight (Float);                // Luggage weight of the flight instance, in kilograms or pounds.
 DepartureWeatherConditions (String);  // Weather at departure.
 ArrivalWeatherConditions (String);    // Weather at arrival.
 ```
