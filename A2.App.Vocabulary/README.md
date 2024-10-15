@@ -53,7 +53,7 @@ Teacher)
 | Weather           | (A) of a Airport  |
 | TSA #             | (A) of a Ticket  |
 | Hijacker          | (NR)  |
-| MaxRange          |   |
+| MaxRange          | (A) of a Plane Model |
 | MilesTillEmpty    | (A) of a FlightInstance  |
 | Meal              | (A) of a Seat  |
 | SeatChart         | (A) of a Plane |
@@ -64,7 +64,7 @@ Teacher)
 | CoPilot           | (SC) of Pilot  |
 | Delayed           | (SV) of a FlightInstance  |
 | Luggage           | (A) of a Seat  |
-| Tag               |   |
+| Tag               | (A) of a Ticket  |
 
 
 # Part 2 - Attribute Lists
@@ -72,27 +72,59 @@ Teacher)
 ## Plane
 
 ```
-                             // The big 3
-ID (String);                 // Unique ID of Plane ()
-Type (enum);                 // Type of Plane ("xxx"/"xxx")
-State (enum);                // State of Plane ("xxx"/"xxx")
+                             // The Big 3
+ID (String);                 // Unique identifier for the plane
+Type (enum);                 // Type of Plane (e.g., "Commercial", "Cargo", "PrivateJet", "Military")
+State (enum);                // Current status of Plane (e.g., "Operational," "Maintenance," "Grounded," "Retired", "Missing")
 
-                             // The connections to other classes (from the CCD)
+                             // Connections to other classes (from the CCD)
+SeatMap (Object);			 // Layout showing the arrangement of seats.
 
 
                              // Other stuff that may be necessary
+Model (String);			     // The specific model of the plane.
+Manufacturer (String);		 // Company that manufactured the plane.
+Capacity (Integer);			 // Maximum number of passengers.
+CrewCapacity (Integer);		 // Number of crew members the plane can accommodate.
+Range (Float);			     // Maximum flying range in nautical mile.
+FuelType (enum);			 // Type of fuel used (e.g., "Jet A1").
+Owner (String);			     // The company or individual owning the plane.
+Age (Integer);			     // Number of years since manufacture.
+LastMaintenanceDate (Date);	 // Date when last serviced.
+RegistrationNumber (String); // Official registration identifier.
+BaseLocation (String);		 // Primary stationed airport.
 ```
 
 ## Flight Instance
 
 ```
-                             // The big 3
-ID (String);                 // Unique ID of Flight ()
-Type (enum);                 // Type of Flight ("xxx"/"xxx")
-State (enum);                // State of Flight ("xxx"/"xxx")
+                             // The Big 3
+ID (String);                 // Unique identifier for the flight instance.
+Type (enum);                 // Type of Flight (e.g., "Scheduled," "Charter").
+State (enum);                // Current status of Flight (e.g., "Scheduled", "In Progress")
 
                              // The connections to other classes (from the CCD)
+Plane (Plane Ptr);			 // Reference to the associated Plane.
+Pilot (Pilot Ptr);			 // Reference to the Pilot assigned.
+CoPilot (Pilot Ptr);		 // Reference to the CoPilot assigned.
+Route (Route Ptr);			 // Reference to the associated Route.
+SeatChart (Collection);		 // Dynamic Seat statuses for this flight.
+SeatStatus (Collection);	 // Decoupled Seat availability and conditions.
+CrewList (Collection);		 // List of assigned crew members.
 
 
-                             // Other stuff that may be necessary
+                                      // Other stuff that may be necessary
+Status (enum);			              // Punctuality status (e.g., "On-Time", "Delayed", "Canceled", "Early", "Diverted", "Landed")
+FlightNumber (String);			      // The designated flight number.
+DepartureAirport (String);			  // Airport code for departure.
+ArrivalAirport (String);			  // Airport code for arrival.
+ScheduledDepartureTime (DateTime);    // Planned departure time.
+ScheduledArrivalTime (DateTime);      // Planned arrival time.
+ActualDepartureTime (DateTime);		  // Actual departure time.
+ActualArrivalTime (DateTime);		  // Actual arrival time.
+MilesTillEmpty (Float);			      // Estimated remaining miles.
+Airline (String);			          // Operating airline.
+PassengerCount (Integer);			  // Number of passengers.
+DepartureWeatherConditions (String);  // Weather at departure.
+ArrivalWeatherConditions (String);	  // Weather at arrival.
 ```
