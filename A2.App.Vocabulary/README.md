@@ -63,8 +63,7 @@ Teacher)
 | SFO               | (OO) of a Airport  |
 | CoPilot           | (SC) of Pilot  |
 | Delayed           | (SV) of a FlightInstance  |
-| Luggage           | (A) of a Seat  |
-| Tag               | (A) of a Ticket  |
+| Luggage Tag       | (A) of a Seat  |
 
 
 # Part 2 - Attribute Lists
@@ -90,7 +89,7 @@ CrewCapacity (Integer);      // Number of crew members the plane can accommodate
 MaxLuggageWeight (Float);    // Maximum luggage weight the plane can safely carry, in kilograms or pounds.
 Range (Float);               // Maximum flying range in nautical mile.
 FuelType (enum);             // Type of fuel used (e.g., "Jet A1", "Jet A", "JP-8", "Biofuel", "Hydrogen", "Electric").
-Owner (String);              // The company or individual owning the plane.
+Company (String);            // The company owning the plane.
 Age (Integer);               // Number of years since manufacture.
 LastMaintenanceDate (Date);  // Date when last serviced.
 RegistrationNumber (String); // Official registration identifier.
@@ -110,7 +109,7 @@ State (enum);                // Current status of Flight (e.g., "Scheduled", "In
 Plane (Plane Ptr);           // Reference to the associated Plane.
 Pilot (Pilot Ptr);           // Reference to the Pilot assigned.
 CoPilot (Pilot Ptr);         // Reference to the CoPilot assigned.
-Route (Route Ptr);           // Reference to the associated Route.
+Flight (Flight Ptr);         // Reference to the associated Flight.
 AssignedGate (Collection);   // Collection to Gate Ptr.
 SeatChart (Collection);      // Dynamic Seat statuses for this flight.
 SeatStatus (Collection);     // Decoupled Seat availability and conditions.
