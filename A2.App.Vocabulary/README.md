@@ -77,10 +77,10 @@ ID (String);                 // Unique identifier for the plane
 Type (enum);                 // Type of Plane (e.g., "Commercial", "Cargo", "PrivateJet", "Military")
 State (enum);                // Current status of Plane (e.g., "Operational," "Maintenance," "Grounded," "Retired", "Missing")
 
-                             // Connections to other classes (from the CCD)
-SeatMap (Object);            // Layout showing the arrangement of seats.
-Model (PlaneModel Ptr);      // Reference to PlaneModel.
-Flight (Plane Ptr);          // Reference to the associated Flight.
+                                      // Connections to other classes (from the CCD)
+SeatMap (Object);                     // Layout showing the arrangement of seats.
+PlaneModel (PlaneModel Ptr);          // Reference to PlaneModel.
+FlightInstance (FlightInstance Ptr);  // Reference to the associated FlightInstance.
 
 
                              // Other stuff that may be necessary
@@ -111,6 +111,7 @@ Plane (Plane Ptr);           // Reference to the associated Plane.
 Pilot (Pilot Ptr);           // Reference to the Pilot assigned.
 CoPilot (Pilot Ptr);         // Reference to the CoPilot assigned.
 Route (Route Ptr);           // Reference to the associated Route.
+AssignedGate (Collection);   // Collection to Gate Ptr.
 SeatChart (Collection);      // Dynamic Seat statuses for this flight.
 SeatStatus (Collection);     // Decoupled Seat availability and conditions.
 CrewList (Collection);       // List of assigned crew members.
