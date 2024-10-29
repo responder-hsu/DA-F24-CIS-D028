@@ -30,7 +30,7 @@ Status: Enum (e.g., "Full-time", "Part-time", "Not Enrolled")
 ```
 Unique ID: String (Barcode, e.g., "1123432E")
 Type: Enum (e.g., "Library Card")
-State: Enum (e.g., "Active", "Expired")
+State: Enum (e.g., "Active", "Expired", "Suspended")
 ```
 
 ```
@@ -69,7 +69,7 @@ Type: Enum (e.g., "Book", "Newspaper", "DVD")
 # Book (Subclass of Material)
 ```
 ISBN: String (Unique ID for book)
-Type: Enum (e.g., ReferenceBook")
+Type: Enum (e.g., "Fiction", "Non-fiction")
 State: Enum (e.g., "Available", "Unavailable")
 ```
 
@@ -82,14 +82,14 @@ Title: String (Title of the Book)
 Author: String (Author of the Book)
 Publisher: String (Publisher of the Book)
 Edition: String (Edition of the Book)
-CatalogNumber: String (Catalog number for non-fiction materials)
+IsReferenceBook: Bool (Boolean to indicate is this a reference work or not)
 ```
 
 # Copy
 ```
 Unique ID: String (Barcode)
-Type: Enum (e.g., "Copy")
-State: Enum (e.g., "Available", "CheckedOut", "Broken", "Missing")
+Type: Enum (e.g., "Hradback", "Paperback")
+State: Enum (e.g., "Available", "CheckedOut", "Broken", "Lost")
 ```
 
 ```
@@ -97,17 +97,19 @@ CheckedOutRecord: CheckedOutRecord Ptr (Reference to the current CheckedOutRecor
 ```
 
 ```
+CatalogNumber: String (Catalog number for non-fiction materials)
 AmountOwed: Float (Any overdue fees for the copy)
 ```
 
 # CheckedOutRecord
 ```
 Unique ID: String (Copy Barcode + LibraryCard Barcode + xx )
-Type: Enum (e.g., "Normal", "History")
-State: Enum (e.g., "Available", "CheckedOut", "Broken", "Missing")
+Type: Enum (e.g., "Current", "History")
+State: Enum (e.g., "Normal", "Overdue")
 ```
 
 ```
+Copy: Copy Ptr (Reference to the Copy)
 LibraryCard: LibraryCard Ptr (Reference to the LibraryCard)
 ```
 
