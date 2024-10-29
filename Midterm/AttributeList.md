@@ -8,7 +8,6 @@ State: Enum (e.g., "Active", "Suspended", "Blocked")
 
 ```
 LibraryCard: LibraryCard Ptr (Reference to the current LibraryCard)
-LibraryCardHistory: Collection (Collection to owned LibraryCard Ptr)
 CheckedOutRecords: Collection (Collection to the current CheckedOutRecord Ptr)
 CheckedOutHistory: Collection (Collection to the history of CheckedOutRecord Ptr)
 ```
@@ -116,3 +115,8 @@ LibraryCard: LibraryCard Ptr (Reference to the LibraryCard)
 DueDate: Date (Due date for returning the copy)
 DateCheckedOut: Date (Date the copy was checked out)
 ```
+
+
+# Remaining questions
+
+How to trace fine between Borrower, LibraryCard, Material(Book), Copy?
