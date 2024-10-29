@@ -115,9 +115,8 @@ LibraryCard: LibraryCard Ptr (Reference to the LibraryCard)
 ```
 DueDate: Date (Due date for returning the copy)
 DateCheckedOut: Date (Date the copy was checked out)
+DateReturned: Date (Date the copy was returned)
 ```
 
 
 # Remaining questions
-
-How to trace fine between Borrower, LibraryCard, Material(Book), Copy?

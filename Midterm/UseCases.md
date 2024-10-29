@@ -3,7 +3,7 @@
 ## Add a new purchased copy of a book to the library's current inventory.
 ```
 Library verify the required path "Material > Book" exists
-Create one if not
+- Create one if not
 ```
 From ESD "Copy"
 > Start
@@ -31,10 +31,21 @@ From ESD "LibraryCard"
 
 ## A specific borrower attempts to check out a specific copy.
 ```
-
+Library verify the state of LibraryCard is Active when LibraryCard is scanned
 ```
+From ESD "Copy"
+> CheckOut() event
+>> Verify is the LibraryCard's permission
+>>> Can this card check out this copy if it's a reference book
+>>>> LibraryCard.Borrower.Type == "Teacher"
+>>> How long can this Copy be checked out (3 days for reference book, 10 days for others)
 
 ## A specific copy is returned
+From ESD "Copy"
+> Return() event
+>> Set CheckedOutRecord.DateReturned
+>> Move CheckedOutRecord from CheckedOutRecord.LibraryCard.Borrower.CheckedOutRecords to CheckedOutRecord.LibraryCard.Borrower.CheckedOutHistory
+
 ## New day
 
 # Reports
