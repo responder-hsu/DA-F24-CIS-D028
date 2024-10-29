@@ -98,7 +98,6 @@ CheckedOutRecord: CheckedOutRecord Ptr (Reference to the current CheckedOutRecor
 
 ```
 CatalogNumber: String (Catalog number for non-fiction materials)
-AmountOwed: Float (Any overdue fees for the copy)
 ```
 
 # CheckedOutRecord
