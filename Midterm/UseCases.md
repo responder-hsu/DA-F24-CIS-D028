@@ -6,8 +6,10 @@ Library verify the required path "Material > Book" exists
 - Create one if not
 ```
 From ESD "Copy"
+```
 > Start
 >> Add() event
+```
 
 ## Remove an existing copy from the inventory due to damage or loss.
 From ESD "Copy"
@@ -19,33 +21,37 @@ Library verify the Borrower's indentity through College
 Library check the Borrower isn't current in the Library.Borrowers collection
 ```
 From ESD "LibraryCard"
+```
 > Start
 >> Register() event
-
+```
 
 ## Borrower pays all or part of their outstanding fines
 From ESD "LibraryCard"
+```
 > PayFine() event
 >> change state from Suspended to Active or Expired
-
+```
 
 ## A specific borrower attempts to check out a specific copy.
 ```
 Library verify the state of LibraryCard is Active when LibraryCard is scanned
 ```
 From ESD "Copy"
+```
 > CheckOut() event
 >> Verify is the LibraryCard's permission
 >>> Can this card check out this copy if it's a reference book
 >>>> LibraryCard.Borrower.Type == "Teacher"
 >>> How long can this Copy be checked out (3 days for reference book, 10 days for others)
-
+```
 ## A specific copy is returned
 From ESD "Copy"
+```
 > Return() event
 >> Set CheckedOutRecord.DateReturned
 >> Move CheckedOutRecord from CheckedOutRecord.LibraryCard.Borrower.CheckedOutRecords to CheckedOutRecord.LibraryCard.Borrower.CheckedOutHistory
-
+```
 ## New day
 
 # Reports
