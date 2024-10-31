@@ -1,7 +1,7 @@
 # Borrower (Abstract Class)
 
 ```
-CWID: String (Unique identifier for the teacher, e.g. 91234567)
+CWID: String (Unique ID for the teacher, e.g. 91234567)
 Type: Enum (e.g., "Teacher", "Student")
 State: Enum (e.g., "Active", "Suspended", "Blocked")
 ```
@@ -28,7 +28,7 @@ Status: Enum (e.g., "Full-time", "Part-time", "Not Enrolled")
 
 # LibraryCard
 ```
-Unique ID: String (Barcode, e.g., "1123432E")
+BarCode : String (Unique ID for LibraryCard, e.g., "1123432E")
 Type: Enum (e.g., "Library Card")
 State: Enum (e.g., "Active", "Expired", "Suspended")
 ```
@@ -44,7 +44,7 @@ IsExpired: Boolean (Indicates whether the LibraryCard expired)
 
 # Library
 ```
-Unique ID: String (Library ID, e.g., "ML001")
+ID: String (Library ID, e.g., "ML001")
 Type: Enum (e.g., "Library")
 State: Enum (e.g., "Open", "Closed")
 ```
@@ -68,13 +68,13 @@ Type: Enum (e.g., "Book", "Newspaper", "DVD")
 
 # Book (Subclass of Material)
 ```
-ISBN: String (Unique ID for book)
-Type: Enum (e.g., "Fiction", "Non-fiction")
+ISBN: String (Unique ID for Book)
+BookType: Enum (e.g., "Fiction", "Non-fiction")
 State: Enum (e.g., "Available", "Unavailable")
 ```
 
 ```
-Copies: Collection (List of Copy Ptr)
+Copies: Collection (List of BookCopy Ptr)
 ```
 
 ```
@@ -85,9 +85,9 @@ Edition: String (Edition of the Book)
 IsReferenceBook: Bool (Boolean to indicate is this a reference work or not)
 ```
 
-# Copy
+# BookCopy (or Copy)
 ```
-Unique ID: String (Barcode)
+Barcode: String (Unique ID for BookCopy, e.g. ED92341)
 Type: Enum (e.g., "Hradback", "Paperback")
 State: Enum (e.g., "Available", "CheckedOut", "Broken", "Lost")
 ```
@@ -97,18 +97,18 @@ CheckedOutRecord: CheckedOutRecord Ptr (Reference to the current CheckedOutRecor
 ```
 
 ```
-CatalogNumber: String (Catalog number for non-fiction materials)
+CatalogNumber: String (Catalog number for non-fiction materials, hardback/paperback might have different catalog #)
 ```
 
 # CheckedOutRecord
 ```
-Unique ID: String (Copy Barcode + LibraryCard Barcode + xx )
+ID: String (Unique ID for CheckedOutRecord)
 Type: Enum (e.g., "Current", "History")
 State: Enum (e.g., "Normal", "Overdue")
 ```
 
 ```
-Copy: Copy Ptr (Reference to the Copy)
+BookCopy: BookCopy Ptr (Reference to the BookCopy)
 LibraryCard: LibraryCard Ptr (Reference to the LibraryCard)
 ```
 
@@ -117,6 +117,3 @@ DueDate: Date (Due date for returning the copy)
 DateCheckedOut: Date (Date the copy was checked out)
 DateReturned: Date (Date the copy was returned)
 ```
-
-
-# Remaining questions
