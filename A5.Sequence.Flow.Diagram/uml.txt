@@ -1,0 +1,47 @@
+title A5: Library Reservation Sequence Flow Diagram\nBy Homework Team 2\nCaden Carlson, Sanya Bhatnagar, Savun Takhar, Wei Che Hsu
+
+
+participant Client
+participant Library
+participant Card
+participant Book
+participant Copy
+participant Reservation
+
+Client->Library: Library::getCard(BarCodeOfCard)
+activate Library
+Library->Card: Card::getCard(BarCodeOfCard)
+Card-->Library: Card
+Library->Card: isExpired(Card)
+Card-->Library: Y/N
+Library-->Client: Card
+deactivate Library
+
+Client->Library: Library::getBook(ISBN)
+Library-->Client: Book
+
+Client->Card: Card::reserveBook(Book)
+Card->Card: Card::isEligibleToReserveBook()
+note right of Card: Ensure related policies are met
+Card->Book: Book:reserve(Card)
+
+alt Book Reservation
+Book->Book: Book:isReferenceBook()
+activate Book
+loop For Copy in Book
+Book->Copy: Copy:isInShelves()
+Copy-->Book: Y/N
+end loop
+deactivate Book
+Book->Reservation: Reservation::create(Card, Book)
+activate Reservation
+Reservation->Book: Book::addReservation(Reservation)
+Book-->Reservation: OK
+Reservation->Card: Card::addReservation(Reservation)
+Card-->Reservation: OK
+deactivate Reservation
+Reservation-->Book: Done
+Book-->Card: Done
+end alt
+
+Card-->Client: Done
