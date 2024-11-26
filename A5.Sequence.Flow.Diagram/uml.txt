@@ -26,26 +26,32 @@ Library-->Client: Book
 Client->Card: Card::reserveBook(Book)
 Card->Card: Card::isEligibleToReserveBook()
 note right of Card: Ensure related policies are met
-Card->Book: Book:reserve(Card)
+Card->Book: Book::addReservation(Card)
 
 alt Book Reservation
-Book->Book: Book:isReferenceBook()
-Book->Book: Book:findCopy()
+
+Book->Book: Book::isReferenceBook()
+Book->Card: Card::getType()
+Card-->Book: CardType
+Book->Book: Book::findCopy()
 activate Book
 loop For Copy in Book
-Book->Copy: Copy:isInShelves()
+Book->Copy: Copy::isInShelves()
 Copy-->Book: Y/N
 end loop
 deactivate Book
+
+alt Passed Check
 Book->Reservation: Reservation::create(Card, Book)
 activate Reservation
-Reservation->Book: Book::addReservation(Reservation)
+Reservation->Book: Book::pushFIFOReservation(Reservation)
 Book-->Reservation: OK
 Reservation->Card: Card::addReservation(Reservation)
 Card-->Reservation: OK
 deactivate Reservation
 Reservation-->Book: Done
 Book-->Card: Done
+end alt
 end alt
 
 Card-->Client: Done
