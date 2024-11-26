@@ -1,5 +1,8 @@
-title A5: Library Reservation Sequence Flow Diagram\nBy Homework Team 2\nCaden Carlson, Sanya Bhatnagar, Savun Takhar, Wei Che Hsu
+@startuml
 
+skinparam SequenceMessageAlign center
+
+title A5: Library Reservation Sequence Flow Diagram\nBy Homework Team 2\nCaden Carlson, Sanya Bhatnagar, Savun Takhar, Wei Che Hsu
 
 participant Client
 participant Library
@@ -12,7 +15,7 @@ Client->Library: Library::getCard(BarCodeOfCard)
 activate Library
 Library->Card: Card::getCard(BarCodeOfCard)
 Card-->Library: Card
-Library->Card: isExpired(Card)
+Library->Card: Card::isExpired(Card)
 Card-->Library: Y/N
 Library-->Client: Card
 deactivate Library
@@ -27,6 +30,7 @@ Card->Book: Book:reserve(Card)
 
 alt Book Reservation
 Book->Book: Book:isReferenceBook()
+Book->Book: Book:findCopy()
 activate Book
 loop For Copy in Book
 Book->Copy: Copy:isInShelves()
@@ -45,3 +49,5 @@ Book-->Card: Done
 end alt
 
 Card-->Client: Done
+
+@enduml
