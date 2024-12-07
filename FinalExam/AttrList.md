@@ -21,20 +21,24 @@ TimeLogs: Collection (Collection to the TimeLog)
 ```
 
 ```
+ActiveProjects: Collection (Collection of active Projects)
+```
+
+```
 AllowedHours: Integer (allowed hours of work per week, e.g. 60)
 HourlyPayRate: Float (Hourly pay rate, exception for Salespeople) 
 ```
 
 ## Salespeople
 ```
-Projects: Collection (Collection of Projects sold by this Salespeople)
+SoldProjects: Collection (Collection of Projects sold by this Salespeople)
 ```
 
 
 # Customer
 ```
 ID: String (Unique ID for Customer)
-Catelog: Enum (e.g., "Manufacturing", "Retail", "Healthcare", etc.)
+Catelog: Type (e.g., "Government", "Manufacturing", "Retail", "Healthcare", etc.)
 State: Enum (e.g., "Active", "Suspended", "Blocked")
 ```
 
@@ -57,7 +61,8 @@ State: Enum (e.g., "KickedOff", "Proposed", "Active", "Stopped", "Completed", "I
 
 ```
 Customer: Customer Ptr (Ptr to Customer)
-Programmers: Collection (Collection of approved Programmer)
+Salespeople: Salespeople Ptr (Ptr to Salespeople)
+Employees: Collection (Collection of Employees, aka. approved Programmer for Customers' Projects; Clerical/SoftwareArchitect for Overhead Project)
 WorkLogs: Collection (Collection of WorkLog)
 ```
 
@@ -70,6 +75,7 @@ CostToComplete: Float (Current budget)
 
 # TimeLog
 ```
+ID: String (Unique ID of WorkLog)
 ```
 
 ```

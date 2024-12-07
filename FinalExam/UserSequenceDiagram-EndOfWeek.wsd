@@ -1,0 +1,84 @@
+@startuml
+
+skinparam SequenceMessageAlign center
+
+
+title CodeByNight - EndOfWeek Sequence Flow Diagram
+
+participant Client
+participant Company
+participant Project
+participant Employee
+participant WorkLog
+participant Customer
+
+
+Client->Company: Company::endOfWeek()
+loop Walkthrough All Active Projects
+Company->Company: Company::getNextActiveProject()
+Company->Project: Project::chargeCostOfWeek()
+loop Walkthrough All Approved Employees
+Project->Project: Project::getNextApprovedEmployee()
+Project->Employee: Employee::getCostOfWeek(Project)
+activate Employee
+Employee->WorkLog: WorkLog::getWorkingHoursOfWeek(Project)
+WorkLog-->Employee: working_hours_of_the_week
+Employee->Employee: Employee::calcProjectCost(Project, working_hours_of_the_week)
+Employee-->Project: cost_of_week
+deactivate Employee
+Project->Project: Project::applyCostOfWeek(cost_of_week)
+end loop
+alt If Project is Insolvent
+loop
+Project->Project: Project::getNextApprovedEmployee()
+Project->Employee: Employee::notifyInsolventProject(Project)
+Employee-->Project: OK
+end loop
+end alt
+Project-->Company: DONE
+Company->Project: Project::sendReportOfWeek()
+loop Walkthrough All Approved Employees
+Project->Project: Project::getNextApprovedEmployee()
+Project->Employee: Employee::getProjectReportOfWeek(Project)
+activate Employee
+Employee->WorkLog: WorkLog::getWorkingHoursOfWeek(Project)
+WorkLog-->Employee: working_hours_of_the_week
+Employee->Employee: Employee::calcProjectCost(Project, working_hours_of_the_week)
+Employee->Employee: Employee::generateProjectReport(Project)
+Employee-->Project: project_report_of_week
+deactivate Employee
+Project->Project: Project::aggerateProjectReportOfWeek(project_report_of_week)
+end loop
+Project->Customer: Customer::sendReport(aggergated_report_of_week)
+Project-->Company: aggergated_report_of_week
+end loop
+
+loop Walkthrough All Projects Ended During This Week
+Company->Company: Company::getNextProjectEndedThisWeek()
+Company->Project: Project::getUnspentFunds()
+Project-->Company: unspend_funds
+Company->Customer: Customer::returnUnspendFunds(Project, unspend_funds)
+Customer-->Company: OK
+Company->Project: Project::closeAndArchieve()
+Project->Company: OK
+end
+
+loop Walkthrough All Employees
+Company->Company: Company::getNextActiveEmployee()
+Company->Employee: Employee::calcSalary()
+activate Employee
+Employee->WorkLog: WorkLog::calcSalary()
+WorkLog-->Employee: salary_of_week
+Employee-->Company: salary_of_week
+deactivate Employee
+Company->Company: Company::payEmployee(Employee, salary_of_week)
+Company->Employee: Employee::getReportOfWeek()
+Employee->WorkLog: WorkLog::getReportOfWeek()
+WorkLog-->Employee: report_of_week
+Employee-->Company: report_of_week
+Company->Company: Company::aggergateReportOfWeek(report_of_week)
+end loop
+Company-->Client: DONE
+
+@enduml
+
